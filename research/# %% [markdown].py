@@ -178,3 +178,15 @@ print(f'R2 y1: {r2_y1}, R2 y2: {r2_y2}, avg: {(r2_y1+r2_y2)/2}')
 # You should now be able to submit preds.csv to [https://quantchallenge.org/dashboard/data/upload-predictions](https://quantchallenge.org/dashboard/data/upload-predictions)! Note that you should receive a public $R^2$ score of $-0.042456$ with this set of predictions. You should try to get the highest possible $R^2$ score over the course of these next few days. Be careful of overfitting to the public score, which is only calculated on a subset of the test data—the final score that counts is the private $R^2$ score!
 
 
+#%%
+#convert from float to int
+import pandas as pd
+df = pd.read_csv('preds.csv')
+df = df.dropna(subset=["id"])
+print(df.dtypes)
+
+df["id"]=df["id"].astype(int)
+print(df.dtypes)
+
+df.to_csv("new_preds.csv", index=False)
+# %%
